@@ -1,0 +1,84 @@
+﻿@model ReplicaSystem.Models.SignupVM
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Signup HashtagClassroom</title>
+    <link rel="stylesheet" href="~/Content/Site.css">
+</head>
+
+<body>
+    @using (Html.BeginForm("Signup", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        <header id="header">
+            <h1>HashtagClassroom</h1>
+        </header>
+
+        <!--side menu-->
+        <nav class="navbar">
+            <span class="open-slide">
+                <a href="#" onclick="openSlideMenu()">
+                    <svg width="30" height="30">
+                        <path d="M0,5 30,5" stroke="#B3B6B7" stroke-width="5" />
+                        <path d="M0,14 30,14" stroke="#B3B6B7" stroke-width="5" />
+                        <path d="M0,23 30,23" stroke="#B3B6B7" stroke-width="5" />
+                    </svg>
+                </a>
+            </span>
+            <ul class="navbar-nav"></ul>
+        </nav>
+        <div id="side-menu" class="side-nav">
+            <a href="#" class="btnClose" onclick="closeSlideMenu()">&times;</a>
+            <a href="Settings.html" class="fa fa-gear">  Settings</a>
+            <a href="Help.html" class="fa fa-question-circle">  Help</a>
+
+        </div>
+
+        <!-- Signup screen -->
+
+        <div id="background" style="background-image:url('/Content/images/background image (landing).jpeg')">
+            <div class="text">
+                <h1>Sign up</h1>
+                <p> Have and account? <a href="Login.html">Login</a></p>
+            </div>
+            <div id="signup">
+                <form action="">
+                    @Html.TextBoxFor(m => m.FName, new { placeholder = "First Name", @class = "form-control" })
+                    @Html.TextBoxFor(m => m.LName, new { placeholder = "Last Name", @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "form-control" })
+                    @Html.TextBoxFor(m => m.CellNum, new { placeholder = "Contact Number", @class = "form-control" })
+                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
+                    <br>
+                    <input type="submit" value="Sign Up" class="btn button" />
+                </form>
+            </div>
+        </div>
+
+        <!--java script for slidemenu-->
+        <script>
+            function openSlideMenu() {
+                document.getElementById('side-menu').style.width = '250px';
+                document.getElementById('showcase').style.marginLeft = '250px';
+
+            }
+            function closeSlideMenu() {
+                document.getElementById('side-menu').style.width = '0';
+                document.getElementById('showcase').style.marginLeft = '0';
+            }
+
+        </script>
+    }
+    </body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

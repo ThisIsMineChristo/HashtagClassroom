@@ -1,0 +1,289 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #080705;
+    line-height: 1.6;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #FBFEFB;
+    line-height: 1.5;
+}
+
+/*  #D0B8AC ,#B3B6B7,#080705, #40434E */
+
+#header {
+    width: 100%;
+    height: 10vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #B3B6B7;
+    position: relative;
+}
+
+    #header h1 {
+        /* if you add p then every p looks crazy but atleast no white gap at top*/
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        color: #040404;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+/* navbar */
+.navbar {
+    position: sticky;
+    top: 0px;
+    background-color: #40434E;
+    overflow: hidden;
+    height: 50px;
+}
+
+    .navbar a {
+        float: left;
+        display: block;
+        color: #B3B6B7;
+        text-align: center;
+        padding: 10px 14px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .navbar ul {
+        margin: 2px 8px;
+        list-style: none;
+    }
+
+    .navbar a:hover {
+        background-color: #D0B8AC;
+        color: #FBFEFB;
+    }
+
+/* class to apply to scroll */
+.fixed {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 20;
+}
+/* side-nav */
+.side-nav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #080705;
+    opacity: 0.9;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.4s;
+}
+
+    .side-nav a {
+        padding: 10px 10px 10px 30px;
+        text-decoration: none;
+        font-size: 22px;
+        color: #B3B6B7;
+        display: block;
+        transition: 0.3s;
+    }
+
+        .side-nav a:hover {
+            color: #FBFEFB;
+        }
+
+    .side-nav .btnClose {
+        position: absolute;
+        top: 0;
+        right: 22px;
+        font-size: 36px;
+        margin-left: 60px;
+    }
+
+/* landing page */
+#showcase {
+    background-image: url('../Content/images/background\ image\ \(landing\).jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+    #showcase h1 {
+        color: #FBFEFB;
+        font-size: 50px;
+        line-height: 1.2;
+    }
+
+    #showcase p {
+        font-size: 20px;
+    }
+
+    #showcase .button {
+        font-size: 18px;
+        text-decoration: none;
+        color: #FBFEFB;
+        border: #B3B6B7 2px solid;
+        padding: 10px 20px;
+        border-radius: 15px;
+        justify-content: space-between;
+    }
+
+        #showcase .button:hover {
+            background: #B3B6B7;
+            color: #FBFEFB;
+        }
+
+@media(max-width:500px) {
+    .navbar-nav {
+        display: none;
+    }
+}
+
+#background {
+    background-image: url('../images/background image (landing).jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+}
+
+
+/* login and signup */
+
+.text, #login {
+    margin-top: 45vh;
+}
+
+
+.text {
+    margin-left: 10%;
+    font-weight: 70px;
+}
+
+    .text h1, p {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: #FBFEFB;
+        line-height: 1.6;
+    }
+
+    .text p a {
+        color: #40434E;
+        text-decoration: none;
+    }
+
+#login {
+    margin-top: 5%;
+    margin-left: 20%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+#signup {
+    margin-top: 5%;
+    margin-left: 20%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+
+
+
+
+input {
+    display: block;
+    width: 320px;
+    height: 50px;
+    background: #b3b6b74f;
+    outline: #B3B6B7;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+#login .button, #signup .button {
+    font-size: 18px;
+    text-decoration: none;
+    color: #FBFEFB;
+    border: #B3B6B7 2px solid;
+    padding: 10px 20px;
+    border-radius: 15px;
+    justify-content: space-between;
+}
+
+    #login .button:hover, #signup .button:hover {
+        background: #B3B6B7;
+        color: #FBFEFB;
+    }
+
+#search {
+    width: 400px;
+    height: 30px;
+    padding: 2px;
+    border-radius: 25px;
+    border: none;
+    font-size: 10px;
+    color: #080705ec;
+    margin-top: 20;
+    margin-left: 30%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* all style */
+/* *{ */
+/* font-family: Arial, Helvetica, sans-serif; */
+/* line-height: 1.5rem; */
+/* background: #F7F9F9; */
+/* } */
+/* h1{ */
+/* color: #2D3142; */
+/* } */
+
+/* p{ */
+/* color: #ADACB5; */
+/* } */
+
+/* .bar{ */
+/* color: #669BBC; << banner */
+/* } */
+
+
+
+

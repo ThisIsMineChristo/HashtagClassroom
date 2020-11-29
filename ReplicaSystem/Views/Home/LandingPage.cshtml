@@ -1,0 +1,73 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Landing HashtagClassroom</title>
+    <link rel="stylesheet" href="~/Content/Site.css">
+
+
+</head>
+
+<body>
+
+    <header id="header">
+        <h1>HashtagClassroom</h1>
+    </header>
+
+    <!--side menu-->
+    <nav class="navbar">
+        <span class="open-slide">
+            <a href="#" onclick="openSlideMenu()">
+                <svg width="30" height="30">
+                    <path d="M0,5 30,5" stroke="#B3B6B7" stroke-width="5" />
+                    <path d="M0,14 30,14" stroke="#B3B6B7" stroke-width="5" />
+                    <path d="M0,23 30,23" stroke="#B3B6B7" stroke-width="5" />
+                </svg>
+            </a>
+        </span>
+    </nav>
+
+    <div id="side-menu" class="side-nav">
+        <a href="#" class="btnClose" onclick="closeSlideMenu()">&times;</a>
+        <a href="Login.html" class="fa fa-power-off">  Login</a>
+        <a href="Settings.html" class="fa fa-gear">  Settings</a>
+        <a href="Help.html" class="fa fa-question-circle">  Help</a>
+
+    </div>
+
+    <!--header-->
+    <header id="showcase" style="background-image:url('/Content/images/background image (landing).jpeg')">
+        <h1>#Classroom</h1>
+        <p>Hi! Welcome to HashtagClassroom</p>
+        <a href="AboutUs.html" class="button">About Us</a>
+        <br>
+    </header>
+
+    <!--java script for slidemenu-->
+    <script>
+    function openSlideMenu(){
+      document.getElementById('side-menu').style.width = '250px';
+      document.getElementById('showcase').style.marginLeft = '250px';
+
+    }
+    function closeSlideMenu(){
+        document.getElementById('side-menu').style.width = '0';
+        document.getElementById('showcase').style.marginLeft = '0';
+    }
+
+    </script>
+
+</body>
+</html>
+
+
+
+
+

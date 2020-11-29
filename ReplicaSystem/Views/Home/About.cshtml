@@ -1,0 +1,207 @@
+﻿@{
+    ViewBag.Title = "About Us";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>About HashtagClassroom</title>
+    <link rel="stylesheet" href="~/Content/Site.css">
+    <style>
+	        body {
+	          font-family: Arial, Helvetica, sans-serif;
+	          margin: 0;
+	        }
+
+	        html {
+	          box-sizing: border-box;
+	        }
+
+	        *, *:before, *:after {
+	          box-sizing: inherit;
+	        }
+
+	        .column {
+	          float: left;
+	          width: 33.3%;
+	          margin-bottom: 16px;
+	          padding: 0 8px;
+	        }
+
+	        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+	          margin: 8px;
+	        }
+
+	        .about-section {
+	          padding: 80px;
+	          text-align: center;
+	          background-color:#D0B8AC;
+	          color:black;
+	        }
+
+	        .container {
+	          padding: 0 20px;
+	        }
+
+	        .container::after, .row::after {
+	          content: "";
+	          clear: both;
+	          display: table;
+	        }
+
+	        .title {
+	          color:black;
+	        }
+
+	        .button {
+	          border: none;
+	          outline: 0;
+	          display: inline-block;
+	          padding: 8px;
+	          color: #FBFEFB;
+	          background-color: #40434E;
+	          text-align: center;
+	          cursor: pointer;
+	          width: 25%;
+	        }
+
+	        .button:hover {
+	          background-color: #B3B6B7;
+	        }
+
+	        @@media screen and (max-width: 650px) {
+	          .column {
+	            width: 100%;
+	            display: block;
+	          }
+	        }
+    </style>
+
+</head>
+<body>
+    <header id="header">
+        <h1>HashtagClassroom</h1>
+    </header>
+
+    <!--side menu-->
+    <nav class="navbar">
+        <span class="open-slide">
+            <a href="#" onclick="openSlideMenu()">
+                <svg width="30" height="30">
+                    <path d="M0,5 30,5" stroke="#B3B6B7" stroke-width="5" />
+                    <path d="M0,14 30,14" stroke="#B3B6B7" stroke-width="5" />
+                    <path d="M0,23 30,23" stroke="#B3B6B7" stroke-width="5" />
+                </svg>
+            </a>
+        </span>
+        <ul class="navbar-nav"></ul>
+    </nav>
+
+
+    <div id="side-menu" class="side-nav">
+        <a href="#" class="btnClose" onclick="closeSlideMenu()">&times;</a>
+        <a href="Login.html" class="fa fa-power-off">  Login</a>
+        <a href="Settings.html" class="fa fa-gear">  Settings</a>
+    </div>
+
+
+    <!--about us section-->
+    <div class="about-section">
+        <h1>About Us Page</h1>
+        <p>Some text about who we are and what we do.</p>
+
+    </div>
+
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+        <div class="column">
+            <div class="card">
+                <img src="~/Content/images/Lucky.jpeg" alt="Lucky" style="width:100%">
+                <div class="container">
+                    <h2>Lucky Khabe</h2>
+                    <p class="title">System Builder</p>
+                    <p style="color:black;">Some text that describes Lucky</p>
+                    <p style="color:black;"> khabepl@gmail.com </p>
+
+
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Content/images/Bontle.jpg" alt="Bontle" style="width:100%">
+                <div class="container">
+                    <h2>Bontle Moloi</h2>
+                    <p class="title">Project Manager</p>
+                    <p style="color:black;">Some text that describes Bontle</p>
+                    <p style="color:black;">kekgethilwe.bm@gmail.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Content/images/Christo.jpeg" alt="Christo" style="width:100%">
+                <div class="container">
+                    <h2>Christo Steenkamp</h2>
+                    <p class="title">System integration</p>
+                    <p style="color:black;">Some text that describes Christo</p>
+                    <p style="color:black;">christo.steenkamp@gmail.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Content/images/Moipone.jpeg" alt="Moipone" style="width:100%">
+                <div class="container">
+                    <h2>Moipone Lebenya</h2>
+                    <p class="title">System Analyst</p>
+                    <p style="color:black;">Some text that describes Moipone</p>
+                    <p style="color:black;">lebenyamoipone@gmail.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="column">
+            <div class="card">
+                <img src="~/Content/images/Lwazi.jpeg" alt="Thembalethu" style="width:100%">
+                <div class="container">
+                    <h2>Thembalethu Ncube</h2>
+                    <p class="title">System Designer</p>
+                    <p style="color:black;">Some text that describes Thembalethu</p>
+                    <p style="color:black;">themba.cue@gmail.com</p>
+                    <p><button class="button">Contact</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--java script for slidemenu-->
+    <script>
+        function openSlideMenu() {
+            document.getElementById('side-menu').style.width = '250px';
+            document.getElementById('showcase').style.marginLeft = '250px';
+
+
+        }
+        function closeSlideMenu() {
+            document.getElementById('side-menu').style.width = '0';
+            document.getElementById('showcase').style.marginLeft = '0';
+        }
+    </script>
+
+</body>
+</html>

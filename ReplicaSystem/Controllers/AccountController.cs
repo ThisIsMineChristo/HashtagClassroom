@@ -26,6 +26,23 @@ namespace ReplicaSystem.Controllers
         [HttpGet]
         public ActionResult LoginView()
         {
+            try
+            {
+
+                FormsAuthentication.SignOut();
+
+
+                HttpContext.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
+
+                Session.Clear();
+                System.Web.HttpContext.Current.Session.RemoveAll();
+
+                
+            }
+            catch
+            {
+                throw;
+            }
             return View();
         }
 
@@ -35,10 +52,7 @@ namespace ReplicaSystem.Controllers
         public ActionResult LoginView(LoginVM entity)
         {
             var userInfo = new LoginVM();
-
-            SqlConnection conn;
-             conn = new SqlConnection();
-
+            
             try
             {
                 //conn.Open();
@@ -53,10 +67,10 @@ namespace ReplicaSystem.Controllers
                     SignInRemember(entity.Email, true);
 
                     //Set A Unique ID in session
-                    Session["UserID"] = userInfo.Email;
+                    //Session["UserID"] = userInfo.Email;
 
                     // If we got this far, something failed, redisplay form
-                    return RedirectToAction("ManageEmployee", "Account");
+                    return RedirectToAction("Index", "Home");
                     //return RedirectToLocal(entity.ReturnURL);
                 }
                 else
@@ -91,78 +105,41 @@ namespace ReplicaSystem.Controllers
                 {
                     OracleConnection Con = new OracleConnection(TNS);
                     Con.Open();
-                    OracleDataAdapter da = new OracleDataAdapter();
-                    OracleCommand cmd = new OracleCommand("INSERT INTO USER_DETAIL(USERNAME, PASSWORD,FIRST_NAME, LAST_NAME, MOBILE_NUMBER, EMAIL_ADDRESS)" +
-                                    "VALUES('@Username', '@Password', '@FName', ' @LNAME', '@CellNum', '@Email')", Con);
-                    cmd.Parameters.Add("@Username", model.Username);
-                    cmd.Parameters.Add("@Password", ComputeSha256Hash(model.Username));
-                    cmd.Parameters.Add("@FName", model.FName);
-                    cmd.Parameters.Add("@LName", model.LName);
-                    cmd.Parameters.Add("@CellNum", model.CellNum);
-                    cmd.Parameters.Add("@Email", model.Email);
-                    cmd.ExecuteNonQuery();
-                    Con.Close();
-                    Con.Dispose();
                     
-                   /* string nextIDQuery = "SELECT MAX( EmployeeNumber) FROM Employee";
-                    SqlCommand sqlComm = new SqlCommand(nextIDQuery, conn);
-                    SqlDataReader readerNewID;
-
-                    readerNewID = sqlComm.ExecuteReader();
-
-                    int nextID = 0;
-                    while (readerNewID.Read())
-                    {
-                        //dataPass = String.Format("{0}", reader[0]);
-                        nextID = (int)readerNewID.GetValue(0) + 1;
-                    }
-                    conn.Close();
-                    readerNewID.Close();*/
-                    string emailQuery = "SELECT Email, COUNT(*) " +
-                                    "FROM Employee " +
-                                    "GROUP BY Email " +
-                                    "HAVING COUNT(*) > 1";
+                     string emailQuery = "SELECT EMAIL_ADDRESS, COUNT(*) " +
+                                    "FROM USER_DETAIL " +
+                                    "GROUP BY EMAIL_ADDRESS " +
+                                    "HAVING COUNT(*) > 0";
                    bool duplicateEmail = false;
-                    // conn.Open();
-                   /* sqlComm = new SqlCommand(emailQuery, conn);
-                    SqlDataReader readerUniqueEmail;
+                   
+                    // da = new OracleDataAdapter();
+                     OracleCommand cmd = new OracleCommand(emailQuery, Con);
+                   
+                    OracleDataReader readerUniqueEmail;
 
-                   // readerUniqueEmail = sqlComm.ExecuteReader();
+                    readerUniqueEmail = cmd.ExecuteReader();
                     
                     while (readerUniqueEmail.Read())
                     {
                         string val = readerUniqueEmail.GetValue(0).ToString();
-                        //dataPass = String.Format("{0}", reader[0]);
+                       
                         if ((val).CompareTo(model.Email) == 0)
                         {
                             duplicateEmail = true;
                         }
 
                     }
-                    readerUniqueEmail.Close();*/
+                    readerUniqueEmail.Close();
                     if (!duplicateEmail)
-                    {/*
-                        string insertQuery = "INSERT INTO Employee (Email, Password, EmployeeNumber, Age,Gender, DistanceFromHome, MaritalStatus, NumberCompaniesWorked,TotalWorkingYears, Over18)" +
-                        " VALUES(@Email,@Password, @EmployeeNumber, @Age, @Gender, @DistanceFromHome, @MaritalStatus, @NumberCompaniesWorked, @TotalWorkingYears, @Over18)";
-                        sqlComm = new SqlCommand(insertQuery, conn);
-                        sqlComm.Parameters.AddWithValue("@Email", model.Email);
-                        sqlComm.Parameters.AddWithValue("@Password", ComputeSha256Hash(model.Password));
-                        sqlComm.Parameters.AddWithValue("@EmployeeNumber", nextID);
-                        sqlComm.Parameters.AddWithValue("@Age", model.Age);
-                        sqlComm.Parameters.AddWithValue("@Gender", model.EmpGender);
-                        sqlComm.Parameters.AddWithValue("@DistanceFromHome", model.HomeDistance);
-                        sqlComm.Parameters.AddWithValue("@MaritalStatus", model.MaritalStatus);
-                        sqlComm.Parameters.AddWithValue("@NumberCompaniesWorked", model.NoCompWorked);
-                        sqlComm.Parameters.AddWithValue("@TotalWorkingYears", model.TotalWorkY);
-                        sqlComm.Parameters.AddWithValue("@Over18", (((int)model.Age) >= 18));
+                    {
+                        OracleDataAdapter da = new OracleDataAdapter();
+                        cmd = new OracleCommand("INSERT INTO USER_DETAIL(USERNAME, PASSWORD,FIRST_NAME, LAST_NAME, MOBILE_NUMBER, EMAIL_ADDRESS)" +
+                                        "VALUES('" + model.Username + "', '" + ComputeSha256Hash(model.Password) + "', '" + model.FName + "', '" +
+                                        model.LName + " ', '" + model.CellNum + "', '" + model.Email + "')", Con);
 
-
-                        sqlComm.ExecuteNonQuery();
-                        insertQuery = "INSERT INTO EmployeeDetails (EmployeeNumber) Values(@EmployeeNumber)";
-                        sqlComm = new SqlCommand(insertQuery, conn);
-                        sqlComm.Parameters.AddWithValue("@EmployeeNumber", nextID);
-                        sqlComm.ExecuteNonQuery();
-                        conn.Close();*/
+                        cmd.ExecuteNonQuery();
+                        Con.Close();
+                        Con.Dispose();
                         return RedirectToAction("LoginView", "Account");
                     }
                     else
@@ -196,7 +173,7 @@ namespace ReplicaSystem.Controllers
                 Session.Clear();
                 System.Web.HttpContext.Current.Session.RemoveAll();
                 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("LoginView", "Account");
             }
             catch
             {
@@ -234,35 +211,42 @@ namespace ReplicaSystem.Controllers
 
         private Boolean comparePass(string username, string inputPass)
         {
+            OracleConnection Con = new OracleConnection(TNS);
+            Con.Open();
 
-            SqlConnection conn = new SqlConnection(TNS);
-            string sql = "SELECT Password FROM Employee WHERE Email ='" + username + "'";
-            conn.Open();
-            SqlCommand command = new SqlCommand(sql, conn);
-            //datas = new DataSet();
+            string sql = "SELECT USER_ID, PASSWORD FROM USER_DETAIL WHERE EMAIL_ADDRESS = '" + username + "'";
+           
 
+            // da = new OracleDataAdapter();
+            OracleCommand cmd = new OracleCommand(sql, Con);
+            // sqlComm = new SqlCommand(emailQuery, conn);
+            OracleDataReader readPass;
+
+            readPass = cmd.ExecuteReader();
             string dataPass = null;
-            SqlDataReader readerCompare;
-            command = new SqlCommand(sql, conn);
-            readerCompare = command.ExecuteReader();
-            while (readerCompare.Read())
+            while (readPass.Read())
             {
-                //dataPass = String.Format("{0}", reader[0]);
-                dataPass = readerCompare.GetValue(0).ToString();
+                 dataPass = readPass.GetValue(1).ToString();
+                Session["UserID"] = readPass.GetValue(0);
             }
+           
 
-            conn.Close();
-            readerCompare.Close();
+            Con.Close();
+            Con.Dispose();
+            
             bool login;
             string inputHash = ComputeSha256Hash(inputPass);
             if (inputHash.CompareTo(dataPass) == 0)
             {
                 login = true;
+                
             }
             else
             {
                 login = false;
             }
+            readPass.Close();
+            readPass.Dispose();
             return login;
 
         }

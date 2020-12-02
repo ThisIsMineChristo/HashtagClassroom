@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplicaSystem", "ReplicaSystem\ReplicaSystem.csproj", "{873D50D3-1CE6-44B6-B026-90D084A67C21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReplicaSystemMongoDB", "..\..\ReplicaMongo\ReplicaSystemMongoDB.csproj", "{591892CD-129F-4979-BC32-DC717BBFB618}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +17,15 @@ Global
 		{873D50D3-1CE6-44B6-B026-90D084A67C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{873D50D3-1CE6-44B6-B026-90D084A67C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{873D50D3-1CE6-44B6-B026-90D084A67C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{591892CD-129F-4979-BC32-DC717BBFB618}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{591892CD-129F-4979-BC32-DC717BBFB618}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{591892CD-129F-4979-BC32-DC717BBFB618}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{591892CD-129F-4979-BC32-DC717BBFB618}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A36E2DA0-66F5-43AB-934E-61D6E1FD5C53}
+		SolutionGuid = {A333E6FE-85DD-4543-9C3E-B1CB02E4F477}
 	EndGlobalSection
 EndGlobal

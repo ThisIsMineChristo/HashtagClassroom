@@ -15,59 +15,107 @@
 
 </head>
 
+
+
+
+
+
 <body>
+    <!--Header-->
+    <header>
+        <a href="#" class="logo">
+            <h1>Hashtag.</h1>
+        </a>
+        <div class="toggle" onclick="toggleMenu();"></div>
+        <ul class="menu">
+            <li><a href="#profile" onclick="toggleMenu();">about us</a></li>
+            <li><a href="~/Account/LoginView" onclick="toggleMenu();">login</a></li>
+            <li><a href="LandingPage" onclick="toggleMenu();">settings</a></li>
+            <li><a href="Help.html" onclick="toggleMenu();">help</a></li>
+        </ul>
 
-    <header id="header">
-        <h1>HashtagClassroom</h1>
     </header>
 
-    <!--side menu-->
-    <nav class="navbar">
-        <span class="open-slide">
-            <a href="#" onclick="openSlideMenu()">
-                <svg width="30" height="30">
-                    <path d="M0,5 30,5" stroke="#B3B6B7" stroke-width="5" />
-                    <path d="M0,14 30,14" stroke="#B3B6B7" stroke-width="5" />
-                    <path d="M0,23 30,23" stroke="#B3B6B7" stroke-width="5" />
-                </svg>
-            </a>
-        </span>
-    </nav>
+    <!--Banner-->
+    <section class="banner" id="home">
+        <div class="textBx">
+            <h2>#Classroom</h2>
+            <h3>by Replica</h3>
+            <a href="#profile" class="btn">About Us</a>
+        </div>
+    </section>
 
-    <div id="side-menu" class="side-nav">
-        <a href="#" class="btnClose" onclick="closeSlideMenu()">&times;</a>
-        <a href="Login.html" class="fa fa-power-off">  Login</a>
-        <a href="Settings.html" class="fa fa-gear">  Settings</a>
-        <a href="Help.html" class="fa fa-question-circle">  Help</a>
+    <!--About us-->
+    <section class="about" id="profile">
+        <div class="heading">
+            <h2>about us</h2>
+            <p>This section contains some of the information about our team</p>
+        </div>
+        <div class="content">
+            <div class="aboutBx">
+                <img src="~/Content/images/Lucky.jpeg">
+                <h2>Lucky Khabe</h2>
+                <p><span>System builder<br></span>Some text that describes Lucky</p>
+                <p>khabepl@gmail.com</p>
+            </div>
 
-    </div>
+            <div class="aboutBx">
+                <img src="~/Content/images/Bontle.jpg">
+                <h2>Kekgethilwe Moloi</h2>
+                <p>
+                    <span>Project Manager and front-developer<br></span>Some text that describes
+                    Kekgethilwe
+                </p>
+                <p>kekgethilwe.bm@gmail.com</p>
+            </div>
 
-    <!--header-->
-    <header id="showcase" style="background-image:url('/Content/images/background image (landing).jpeg')">
-        <h1>#Classroom</h1>
-        <p>Hi! Welcome to HashtagClassroom</p>
-        <a href="AboutUs.html" class="button">About Us</a>
-        <br>
-    </header>
+            <div class="aboutBx">
+                <img src="~/Content/images/Christo.jpeg">
+                <h2>Christo Steenkamp</h2>
+                <p>
+                    <span>System integration<br></span>Some text that describes
+                    Christo
+                </p>
+                <p>christo.steenkamp@gmail.com</p>
+            </div>
 
-    <!--java script for slidemenu-->
-    <script>
-    function openSlideMenu(){
-      document.getElementById('side-menu').style.width = '250px';
-      document.getElementById('showcase').style.marginLeft = '250px';
+            <div class="aboutBx">
+                <img src="~/Content/images/Moipone.jpeg">
+                <h2>Moipone Lebenya</h2>
+                <p><span>System Analyst and front-end developer<br></span>Some text that Moipone</p>
+                <p>lebenyamoipone@gmail.com</p>
+            </div>
 
-    }
-    function closeSlideMenu(){
-        document.getElementById('side-menu').style.width = '0';
-        document.getElementById('showcase').style.marginLeft = '0';
-    }
+            <div class="aboutBx">
+                <img src="~/Content/images/Lwazi.jpeg">
+                <h2>Thembalethu Ncube</h2>
+                <p>
+                    <span>System Designer<br></span>Some text that describes
+                    Themba
+                </p>
+                <p>themba.cue@gmail.com</p>
+            </div>
+        </div>
+    </section>
 
+    <!--js-->
+    <script type="text/javascript">
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+        function toggleMenu() {
+            var menuToggle = document.querySelector('.toggle');
+            var menu = document.querySelector('.menu');
+            menuToggle.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
     </script>
-
 </body>
 </html>
 
-
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 

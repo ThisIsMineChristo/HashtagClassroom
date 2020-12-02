@@ -13,6 +13,8 @@ namespace ReplicaSystem.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
+        public int UserId { get; set; }
+
         public string Password { get; set; }
 
         public string ReturnURL { get; set; }

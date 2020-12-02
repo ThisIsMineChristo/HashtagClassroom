@@ -1,31 +1,107 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    <h3 style="text-align:center">DASHBOARD</h3>
+    <div class="card-columns">
+        <div class="col-lg-2 col-4">
+            <div class="card text-center text-white bg-primary mb-3 " style="max-width: 18rem;">
+                <div class="card-header">Apprenticeships</div>
+                <div class="card-body">
+                    <h2 class="card-title">@ViewData["Apprenticeships"]</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <div class="card text-center text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Bursaries</div>
+                <div class="card-body">
+                    <h2 class="card-title">@ViewData["Bursaries"]</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <div class="card text-center bg-warning mb-3" style="max-width: 18rem;">
+                <div class="card-header">Graduate Programmes</div>
+                <div class="card-body">
+                    <h2 class="card-title">@ViewData["Graduate Programmes"]</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <div class="card text-center text-white bg-success mb-3" style="max-width: 18rem;">
+                <div class="card-header">Internships</div>
+                <div class="card-body">
+                    <h2 class="card-title">@ViewData["Internships"]</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-4">
+            <div class="card text-center text-white bg-danger mb-3" style="max-width: 18rem;">
+                <div class="card-header">Learnerships</div>
+                <div class="card-body">
+                    <h2 class="card-title">@ViewData["Learnerships"]</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br /><br />
+       <div style="display:inline-flex ; flex-wrap:wrap;margin:0 ;align-items:center; text-align:center; justify-content:center">
+        @*<h4>Statistical Charts</h4>*@
+        <iframe style="background: #FFFFFF;margin:1rem;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="400" height="350" src="https://charts.mongodb.com/charts-project-1-databases-ii-kxalf/embed/charts?id=e69083b3-850b-49ca-b734-21ebf9ff2fbe&theme=light"></iframe>
+        <iframe style="background: #FFFFFF;margin:1rem;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="400" height="350" src="https://charts.mongodb.com/charts-project-1-databases-ii-kxalf/embed/charts?id=a47dfd72-b81c-49ae-9c0c-afb79a72d4e7&theme=light"></iframe>
+        <iframe style="background: #FFFFFF;margin:1rem;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="400" height="350" src="https://charts.mongodb.com/charts-project-1-databases-ii-kxalf/embed/charts?id=2af4e26b-ffc9-4151-8c5b-f5d263a51fe4&theme=light"></iframe>
+        <iframe style="background: #FFFFFF;margin:1rem;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="400" height="350" src="https://charts.mongodb.com/charts-project-1-databases-ii-kxalf/embed/charts?id=e099e054-7259-4cc1-9e4d-22dff4f2a75e&theme=light"></iframe>
+        <p class="lead">These charts update within 5 minutes.</p>
+    </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</div>
+<div class="row" id="chart" style="height: 300px; display:inline-flex ; flex-wrap:wrap;margin:0 ;align-items:center; text-align:center; justify-content:center">
+    <div style=" display:inline-flex ; flex-wrap:wrap;margin:0 ;align-items:center; text-align:center; justify-content:center">
+        <div style="align-content:center">
+            <canvas id="uploadChart"></canvas>
+        </div>
+        <div style="align-content:center">
+            <canvas id="categories"></canvas>
+        </div>
     </div>
 </div>
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type="text/javascript">
+        $(function () {
+            var ctx = document.getElementById("uploadChart").getContext('2d');
+            var uploadChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["CPMG211", "CPMG212", "CPMG213", "CPMG214"],
+                    datasets: [{
+                        backgroundColor: ["#2ecc71", "#3494db", "#95a5a6", "9b59b6"],
+                        data: [5, 10, 1, 20]
+                    }]
+
+                }
+
+            })
+            var btx = document.getElementById("categories").getContext('2d');
+            var categories = new Chart(btx, {
+                type: 'pie',
+                data: {
+                    labels: ["Apprenticeship", "Bursary", "Graduate Programmes", "Internship", "Learnership"],
+                    datasets: [{
+                        backgroundColor: ["#00FFFF", "#00008B", "DC143C", "#8B0000", "#00BFFF"],
+                        data: [@ViewData["Apprenticeships"], @ViewData["Bursaries"], @ViewData["Graduate Programmes"], @ViewData["Internships"], @ViewData["Learnerships"]]
+                    }]
+                }
+            })
+        })
+
+
+    </script>
+}
+<style>
+
+    #chart {
+        display: flex;
+    }
+</style>

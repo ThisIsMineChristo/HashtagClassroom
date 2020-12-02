@@ -3,37 +3,64 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Home HashtagClassroom</title>
+    <link rel="stylesheet" href="~/Content/Site.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
+    <header>
+        <a href="#" class="logo">
+            <h1>Hashtag.</h1>
+        </a>
+        <div class="toggle" onclick="toggleMenu();"></div>
+        <nav>
+            <ul class="menu">
+                <li><a href="~/Home/Index" onclick="toggleMenu();">home</a></li>
+                <li><a href="~/Uploads/Index" onclick="toggleMenu();">upload</a></li>
+                <li>
+                    <a href="#" onclick="toggleMenu();">opportunities</a>
+                    <ul>
+                        <li><a href="~/Apprenticeship/Index" onclick="toggleMenu();">apprenticeships</a></li>
+                        <li><a href="~/Bursary/Index" onclick="toggleMenu();">bursaries</a></li>
+                        <li><a href="~/GradProgramme/Index" onclick="toggleMenu();">graduate programmes</a></li>
+                        <li><a href="~/Internship/Index" onclick="toggleMenu();">internships</a></li>
+                        <li><a href="~/Learnership/Index" onclick="toggleMenu();">learnerships</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/Account/LoginView" onclick="toggleMenu();">logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--display-->
+    <section class="display">
+        <div class="displayBx">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Hashtag Classroom</p>
+            </footer>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    </section>
+
+    <!--js-->
+    <script type="text/javascript">
+        window.addEventListener('scroll', function () {
+            var header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+        function toggleMenu() {
+            var menuToggle = document.querySelector('.toggle');
+            var menu = document.querySelector('.menu');
+            menuToggle.classList.toggle('active');
+            menu.classList.toggle('active');
+        }
+
+    </script>
+    @*<div class="container body-content">
+
+        </div>*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

@@ -3,6 +3,7 @@
     Layout = null;
 
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,68 +18,66 @@
     @using (Html.BeginForm("Signup", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        <header id="header">
-            <h1>HashtagClassroom</h1>
+        <!--Header-->
+        <header>
+            <a href="#" class="logo">
+                <h1>Hashtag.</h1>
+            </a>
+            <div class="toggle" onclick="toggleMenu();">
+            </div>
+            <ul class="menu">
+                <li><a href="Settings.html" onclick="toggleMenu();">settings</a></li>
+                <li><a href="Help.html" onclick="toggleMenu();">help</a></li>
+            </ul>
+
         </header>
 
-        <!--side menu-->
-        <nav class="navbar">
-            <span class="open-slide">
-                <a href="#" onclick="openSlideMenu()">
-                    <svg width="30" height="30">
-                        <path d="M0,5 30,5" stroke="#B3B6B7" stroke-width="5" />
-                        <path d="M0,14 30,14" stroke="#B3B6B7" stroke-width="5" />
-                        <path d="M0,23 30,23" stroke="#B3B6B7" stroke-width="5" />
-                    </svg>
-                </a>
-            </span>
-            <ul class="navbar-nav"></ul>
-        </nav>
-        <div id="side-menu" class="side-nav">
-            <a href="#" class="btnClose" onclick="closeSlideMenu()">&times;</a>
-            <a href="Settings.html" class="fa fa-gear">  Settings</a>
-            <a href="Help.html" class="fa fa-question-circle">  Help</a>
-
-        </div>
-
-        <!-- Signup screen -->
-
-        <div id="background" style="background-image:url('/Content/images/background image (landing).jpeg')">
-            <div class="text">
-                <h1>Sign up</h1>
-                <p> Have and account? <a href="Login.html">Login</a></p>
+        <!--signup-->
+        <section class="signup">
+            <div class="content">
+                <div class="new">
+                    <h2>Login</h2>
+                    <p>
+                        Have an Account? <a href="Login.html">Login</a>
+                    </p>
+                    <form action="">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.FName, new { placeholder = "First Name", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.LName, new { placeholder = "Last Name", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "form-control" })
+                        @Html.TextBoxFor(m => m.CellNum, new { placeholder = "Contact Number", @class = "form-control" })
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
+                        <br>
+                        <input type="submit" value="Sign Up" class="btn button" />
+                    </form>
+                </div>
             </div>
-            <div id="signup">
-                <form action="">
-                    @Html.TextBoxFor(m => m.FName, new { placeholder = "First Name", @class = "form-control" })
-                    @Html.TextBoxFor(m => m.LName, new { placeholder = "Last Name", @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control" })
-                    @Html.TextBoxFor(m => m.Username, new { placeholder = "Username", @class = "form-control" })
-                    @Html.TextBoxFor(m => m.CellNum, new { placeholder = "Contact Number", @class = "form-control" })
-                    @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control" })
-                    @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Confirm Password", @class = "form-control" })
-                    <br>
-                    <input type="submit" value="Sign Up" class="btn button" />
-                </form>
-            </div>
-        </div>
+        </section>
 
-        <!--java script for slidemenu-->
-        <script>
-            function openSlideMenu() {
-                document.getElementById('side-menu').style.width = '250px';
-                document.getElementById('showcase').style.marginLeft = '250px';
-
+        <!--js-->
+        <script type="text/javascript">
+            window.addEventListener('scroll', function () {
+                var header = document.querySelector
+                    ('header');
+                header.classList.toggle('sticky', window.
+                    scrollY > 0);
+            });
+            function toggleMenu() {
+                var menuToggle = document.querySelector('.toggle');
+                var menu = document.querySelector('.menu');
+                menuToggle.classList.toggle('active');
+                menu.classList.toggle('active');
             }
-            function closeSlideMenu() {
-                document.getElementById('side-menu').style.width = '0';
-                document.getElementById('showcase').style.marginLeft = '0';
-            }
-
         </script>
     }
     </body>
 </html>
+
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
